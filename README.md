@@ -12,7 +12,7 @@ Dessa forma, a ideia deste projeto é auxiliar na tomada de decisão, provendo r
 
 ## 2. Premissas do negócio
 
-1. Para a previsão foram consideradas apenas lojas que tenham o valor de vendas maior que 0.
+1. Consideradas apenas lojas que tenham o valor de vendas maior que 0.
 2. Dias em que as lojas estavam fechadas foram descartados.
 3. As lojas que não possuem dados de competidores próximos tiveram o valor da distância fixada em 200.000
 
@@ -37,56 +37,56 @@ Dessa forma, a ideia deste projeto é auxiliar na tomada de decisão, provendo r
 
 ## 4. Estratégia da solução
 
-O método CRISP-DS (*Cross Industry Process Data Science*) é originalmente utilizado na indústria para gerenciar processos, foi adaptado para o mundo de Data Science.
+O método CRISP-DS (*Cross Industry Process Data Science*) é originalmente utilizado na indústria para gerenciar processos e foi adaptado para o mundo de Data Science.
 
-O CRISP-DS consiste em 9 etapas bem definidas e a cada iteração completa do ciclo, uma versão da solução é criada, sendo a primeira iteração um produto funcional que pode ser aperfeiçoado ao longo do tempo.
+O CRISP-DS consiste em 9 etapas bem definidas e a cada iteração completa do ciclo, uma versão da solução é criada, sendo a primeira iteração completa um produto funcional podendo ser aperfeiçoado ao longo do tempo.
 
 ### 4.1 Etapas do CRISP-DS
 
 1. **Problema de Negócio:** Etapa que consiste no recebimento da questão de negócio que pode ser uma pergunta ou um pedido feito pelo dono da empresa, no caso desse projeto é feita a questão de negócio por parte do CFO da Rede Rossmann.
-2. **Entendimento do Negócio:** Entender a dor e/ou real necessidade.
+2. **Entendimento do Negócio:** Essa etapa visa entender a dor e/ou real necessidade.
 3. **Coleta dos Dados:** Essa etapa normalmente é feita através de queries em bancos de dados, unindo (ou não) as tabelas e armazenando localmente a fim de desenvolver a solução.
 4. **Limpeza dos Dados:** Essa etapa consiste em limpar os dados identificando os tipos de dados, se há acentos ou caracteres especiais, se há dados faltantes, dados duplicados...
 5. **Exploração dos Dados:** Nessa etapa explora-se qual ou quais variáveis impactam o fenômeno que estamos modelando. Nesse projeto vamos modelar o fenômeno de previsão de vendas, identificando as correlações para ter uma ideia do que impacta a venda positivamente ou negativamente.
-6. **Modelagem dos Dados:** Processo de preparação dos dados, separando em treino e teste, encoding de variáveis categóricas, transformação de dados da variável resposta, que nesse caso são as vendas.
-7. **Algoritmos de Machine Learning:** Aplicar os modelos de machine learning aos dados que foram modelados.
-8. **Avaliação do Algoritmo:** Criar um *conjunto de erros* para ter uma avaliação da acurácia, calculando `MAE`, `MAPE`,`RMSE`, `Accuracy`.
+6. **Modelagem dos Dados:** Essa etapa ocorre o processo de preparação dos dados, separando em treino e teste, encoding de variáveis categóricas, transformação de dados da variável resposta, que nesse projeto são as vendas.
+7. **Algoritmos de Machine Learning:** Aplicação dos modelos de machine learning aos dados que foram modelados.
+8. **Avaliação do Algoritmo:** Criar um *conjunto de erros* calculando `MAE`, `MAPE`,`RMSE`.
 9. **Modelo em Produção:** Publicação do algoritmo, deixando público e de fácil acesso.
 
 ### 4.2 Ferramentas utilizadas
 
 1. Linguagem de Programação Python
-2. Versionador Git
-3. Protipação desenvolvida com VSCode em interagração com Jupyter Notebook
-4. Serviço de hospedagem dna nuvem com [Render](https://render.com/)
+2. Versionamento do código com Git e Github
+3. Protipação desenvolvida no Jupyter Notebook integrado ao Microsoft VSCode
+4. Serviço de hospedagem na nuvem com [Render](https://render.com/)
 5. Manipulação de Dados utilizando Python
 6. Algoritmos de Machine Learning utilizando a biblioteca [Scikit-Learn](https://scikit-learn.org/)
+7. Criação das hipóteses utilizando o [Coggle It](https://coggle.it/)
 
-## 5. Top 3 Insights
+## 5. Mindmap de Hipóteses
 
 Para auxiliar na construção das hipóteses, foi criado um Mindmap.
 
-![hipoteses_mindmap](img/mindmap_hipoteses.png)
+![mindmap_hipoteses](img/mindmap_hipoteses.png)
 
-De um total de 30 hipóteses, 12 foram selecionadas e geraram alguns insights, abaixo é possível visualizar alguns deles:
+## 5.1 Top 3 Insights
+
+Das 30 hipóteses, 12 foram selecionadas e geraram alguns insights, abaixo é possível visualizar alguns deles:
 
 ### Insight 01: Lojas com maior sortimento deveriam vender mais.
 
-- Compara o assortment com as vendas
 - **FALSA:** Pois lojas com MAIOR sortimento vendem MENOS.
 
 ![hipotese1](img/hipotese1.png)
 
 ### Insight 02: Lojas abertas durante o feriado de natal deveriam vender mais.
 
-- Agrupamento das vendas por feriado: natal, páscoa e feriados públicos.
 - **FALSA:** Lojas ABERTAS durante o feriado de natal VENDEM MENOS.
 
 ![hipotese8](img/hipotese8.png)
 
 ### Insight 03: Lojas deveriam vender menos aos finais de semana.
 
-- Soma das vendas agrupadas pelo dia da semana
 - **VERDADEIRA:** Lojas vendem MENOS aos finais de semana.
 
 ![hipotese12](img/hipotese12.png)
@@ -95,7 +95,7 @@ De um total de 30 hipóteses, 12 foram selecionadas e geraram alguns insights, a
 
 Nesse primeiro ciclo foram selecionados 5 algoritmos, dentre esses o que tivesse a melhor seria selecionado para a conclusão dessa etapa do CRISP-DS, a seguir serão listados esses algoritmos.
 
-Algortimos selecionados:
+Algoritmos selecionados:
 
 - Average Model
 - Linear Regression
@@ -103,13 +103,13 @@ Algortimos selecionados:
 - Random Forest Regressor
 - XGBRegressor
 
-Após o treinamento e teste dos algormitos, foi utilizado o método de seleção de variáveis Boruta, auxiliando a escolha das features mais relevantes para o modelo.
+Após o treinamento e teste dos algoritmos, foi utilizado o método de seleção de variáveis Boruta, auxiliando a escolha das features mais relevantes para o modelo.
 
 ## 7. Escolha do Modelo de Machine Learning
 
 ### 7.1 Métrica reportada para negócio
 
-Por não precisar se aprofundar em questões técnincas e se melhor compreendida pela equipe de negócio a métricas escolhida foi a `MAPE`, por representar uma variação positiva ou negativo em valores percentuais.
+Sem a necessidade de aprofundamento em questões técnicas e de melhor compreensão pela equipe de negócio a métricas escolhida foi a `MAPE` que representa uma variação positiva ou negativo em valores percentuais.
 
 ### 7.2 Métricas do Algoritmos
 
@@ -125,7 +125,7 @@ Resultados iniciais:
 
 ### 7.3 Métricas do Cross Validation
 
-Para garantir a perfomance real de cada modelo, foi aplicada a técnica de `cross validation`:
+Para garantir a performance real de cada modelo, foi aplicada a técnica de `cross validation`:
 
 | Nome do Modelo | MAE CV | MAPE CV | RMSE CV |
 | --- | --- | --- | --- |
@@ -136,15 +136,15 @@ Para garantir a perfomance real de cada modelo, foi aplicada a técnica de `cros
 
 ### 7.4 Escolha do Modelo
 
-Podemos observar nas métricas do algortimos que o `Random Forest Regressor` performou um pouco melhor que os demais, abaixo vamos as considerações:
+Podemos observar nas métricas do algoritmo que o `Random Forest Regressor` performou um pouco melhor que os demais, abaixo vamos as considerações:
 
 1. A diferença do valor do erro do Random Forest para o XGBoost foi pequena.
-2. Apesar de ter uma perfomance melhor que o XGBoost, o Random Forest Regressor demora mais para ser executado e como necessitamos de rapidez na entrega do CRISP, o XGBoost consegue entregar um resultado semelhante em menos tempo.
+2. Apesar de ter uma performance melhor que o XGBoost, o Random Forest Regressor demora mais para ser executado e como necessitamos de rapidez na entrega do CRISP, o XGBoost consegue entregar um resultado semelhante em menos tempo.
 3. O XGBoost ocupa menos espaço de armazenamento, tornando assim a sua implementação menos custosa em servidores na nuvem.
 
 ### 7.5 Ajuste dos Hiperparâmetros
 
-A técnica utilizada foi a`Random Search` a fim de buscar os melhores parâmetros, seguem os testes:
+A técnica utilizada foi a `Random Search` a fim de buscar os melhores parâmetros, seguem os testes:
 
 | Tentativa | Modelo | MAE CV | MAPE CV | RMSE CV |
 | --- | --- | --- | --- | --- |
@@ -162,43 +162,54 @@ A técnica utilizada foi a`Random Search` a fim de buscar os melhores parâmetro
 Como podemos observar na tabela acima a tentativa 6 foi a escolha dos melhores parâmetros
 
 > | 6 | XGBoost Regressor | 798.35 +/- 98.79 | 0.11 +/- 0.01 |	1170.37 +/- 175.05
-> 
 
-### 7.6 Perfomance do Modelo
+## 8. Perfomance do Negócio
 
-![ml_perfomance](img/ml_perfomance.png)
-
-## 8. Resultado do Negócio
-
-Abaixo está uma demonstração das 5 primeiras linhas do dataset,
+Visualização das 5 primeiras linhas:
 
 | store | predictions | worst_scenario | best_scenario | MAE | MAPE |
-| --- | --- | --- | --- | --- | --- |
+| :---- | :---------- | :------------- | :------------ | :-- | :--- |
 | 292 | 108699.48 | 105333.59 | 108700.09 | 3365.90 | 0.60 |
 | 909 | 227702.23 | 219932.69 | 227702.75 | 7769.54 | 0.52 |
 | 902 | 205041.27 | 203497.12 | 205041.65 | 1544.14 | 0.39 |
 | 170 | 207886.55 | 206374.80 | 207886.92 | 1511.74 | 0.38 |
 | 876 | 195984.23 | 191873.99 | 195984.57 | 4110.25 | 0.34 |
 
-### 8.1 Perfomance Total
+### Distribuição das Lojas pelo MAPE
+
+![store_mape](img/store_mape.png)
+
+Podemos observar a distribuição do MAPE em relação as lojas e constatar que a maioria das lojas se encontra na faixa de 10%, porém duas lojas chegam a ter um MAPE de mais 50%.
+
+### 8.2 Performance Total
+
+Resumo do pior e melhor cenário de todas as lojas:
 
 | Scenario | Values |
-| --- | --- |
-| predições | R$ 289,617,792.00 |
-| pior cenário | R$ 288,737,682.22 |
-| melhor cenário | R$ 289,617,931.66 |
+| :------- | :----- |
+| predictions | R$ 289,617,792.00 |
+| worst_scenario | R$ 288,737,682.22 |
+| best_scenario | R$ 289,617,931.66 |
 
-### 8.2 Distribuição das Lojas pelo MAPE
+### 8.3 Performance em Machine Learning
 
-![store_mape][img/store_mape.png]
+![img/ml_perfomance.png](img/ml_perfomance.png)
 
+> Date x Predictions: Mostra como a predição está bem próxima das vendas reais ao longo do tempo.
+> 
+> Date x Error_Rate: Mostra qual a porcentagem das predições em relação as vendas, onde o modelo mostra superestimação (acima do 1.0) ou uma subestimação (abaixo do 1.0) ao longo do tempo.
+> 
+> Error: Distribuição do erro
+> 
+> Predictions x Error: Quando as predições estão entre 5.000 e 10.000 há erros maiores, quanto maior o valor das predições maior o erro. 
 
 ## 9. Conclusões
 
 Como o objetivo era entregar valor para o negócio de maneira rápida e eficaz, esse primeiro ciclo resolveu o problema do CFO, disponibilizando a previsão de faturamento das lojas.
-Com a impementação do  Bot, facilitará quando o CFO quiser saber como está o faturamento de cada loja, visto que esse modelo de solução pode ser acessado de qualquer local ou dispositivo conectado a internet.
+
+Com a implementação do Bot, o faturamento de cada loja pode ser acessado de qualquer local ou dispositivo conectado a internet.
 
 ## 10. Próximos Passos
 
-1. Criar uma aplicação Web e disponibilizar as análises para os gerentes.
-2. Tentar melhorar a perfomance dos algoritmos
+1. Criar uma aplicação web e disponibilizar as análises para os gerentes.
+2. Melhorar a performance dos algoritmos
